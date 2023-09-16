@@ -5,16 +5,18 @@ axios.defaults.headers.common[
 
 import { fetchBreeds } from './cat-api';
 import { fetchCatByBreed } from './cat-api';
+import { fetchDescByBreed } from './cat-api';
 
 fetchBreeds();
 
 const selectEl = document.querySelector('.breed-select');
-const catInfoEl = document.querySelector('.cat-info');
 
 selectEl.addEventListener('change', onSelectChange);
 
 function onSelectChange(e) {
-  const breedId = e.target;
+  const breedId = e.target.value;
   console.dir(breedId);
   fetchCatByBreed(breedId);
+
+  fetchDescByBreed(breedId);
 }
