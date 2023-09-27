@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 export function markupCreator(imgUrl, name, description, temperament) {
   return `
       <img style='margin-right: 20px' src=${imgUrl} width='400px'>
@@ -7,6 +8,10 @@ export function markupCreator(imgUrl, name, description, temperament) {
         <h3 style="display: inline">Temperament: </h3>
         <p style="display: inline">${temperament}</p>
       </div>`;
+}
+
+export class loadHideEvents {
+  constructor() {}
 }
 
 export function showSelectLoader() {
@@ -27,23 +32,23 @@ export function hideSelectLoader() {
 
 export function showOptionLoading() {
   const catInfoEl = document.querySelector('.cat-info');
-  const loaderEl = document.querySelector('.loader');
+  const imgLoaderEl = document.querySelector('.img-loader');
   catInfoEl.innerHTML = '';
   catInfoEl.hidden = true;
-  loaderEl.hidden = false;
+  imgLoaderEl.style = 'display: inline-block';
 }
 
 export function hideOptionLoading() {
   const catInfoEl = document.querySelector('.cat-info');
-  const loaderEl = document.querySelector('.loader');
+  const imgLoaderEl = document.querySelector('.img-loader');
   catInfoEl.hidden = false;
-  loaderEl.hidden = true;
+  imgLoaderEl.style = 'display: none';
 }
 
 export function showFetchMistake() {
-  const errorEl = document.querySelector('.error');
-
-  errorEl.hidden = false;
+  Notiflix.Notify.failure(
+    'Oops! Something went wrong! Try reloading the page!'
+  );
 }
 
 export function hideFetchMistake() {

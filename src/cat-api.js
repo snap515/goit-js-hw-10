@@ -17,38 +17,10 @@ import SlimSelect from 'slim-select';
 
 const URL = `https://api.thecatapi.com/v1`;
 
-// export function fetchBreeds() {
-//   hideFetchMistake();
-//   showSelectLoader();
-//   return fetch(`${URL}/breeds`)
-//     .then(response => {
-//       if (!response.ok) {
-//         hideSelectLoader();
-//         showFetchMistake();
-//         throw new Error(response.status);
-//       }
-
-//       return response.json();
-//     })
-//     .then(data => {
-
-//       const selectEl = document.querySelector('.breed-select');
-
-//       const markUp = data.reduce((html, element) => {
-//         return (
-//           html +
-//           `<option value ="${element.reference_image_id}">${element.name}</option>`
-//         );
-//       }, ``);
-//       hideSelectLoader();
-//       breedSelect.innerHTML = markUp;
-//     })
-//     .catch(error => console.log(error));
-// }
-
 export function fetchBreeds() {
-  hideFetchMistake();
   showSelectLoader();
+  hideFetchMistake();
+
   return fetch(`${URL}/breeds`)
     .then(response => {
       if (!response.ok) {
@@ -67,7 +39,6 @@ export function fetchBreeds() {
         });
         return option;
       }, []);
-      console.dir(options);
       new SlimSelect({
         select: '#breedSelect',
         data: options,
@@ -85,6 +56,7 @@ export function fetchCatByBreed(breedId) {
     .then(response => {
       if (!response.ok) {
         hideSelectLoader();
+        hideOptionLoading();
         showFetchMistake();
         throw new Error(response.status);
       }

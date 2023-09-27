@@ -31,3 +31,95 @@
   display: flex;
   align-items: start;
 }
+// !loader
+.loader {
+    animation: rotate 1s infinite;
+    height: 50px;
+    width: 50px;
+
+    margin: auto;
+    position: absolute;
+    top: -500px; left: 0; bottom: 0; right: 0;
+  }
+
+  .loader:before,
+  .loader:after {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 20px;
+    width: 20px;
+  }
+  .loader:before {
+    animation: ball1 1s infinite;
+    background-color: #000;
+    box-shadow: 30px 0 0 #ff3d00;
+    margin-bottom: 10px;
+  }
+  .loader:after {
+    animation: ball2 1s infinite;
+    background-color: #ff3d00;
+    box-shadow: 30px 0 0 #000;
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg) scale(0.8) }
+    50% { transform: rotate(360deg) scale(1.2) }
+    100% { transform: rotate(720deg) scale(0.8) }
+  }
+
+  @keyframes ball1 {
+    0% {
+      box-shadow: 30px 0 0 #ff3d00;
+    }
+    50% {
+      box-shadow: 0 0 0 #ff3d00;
+      margin-bottom: 0;
+      transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 #ff3d00;
+      margin-bottom: 10px;
+    }
+  }
+
+  @keyframes ball2 {
+    0% {
+      box-shadow: 30px 0 0 #000;
+    }
+    50% {
+      box-shadow: 0 0 0 #000;
+      margin-top: -20px;
+      transform: translate(15px, 15px);
+    }
+    100% {
+      box-shadow: 30px 0 0 #000;
+      margin-top: 0;
+    }
+  }
+  
+//! imgLoader
+
+.img-loader {
+    width: 100px;
+    height: 100px;
+    border: 15px solid #000;
+    border-bottom-color: #FF3D00;
+    border-radius: 50%;
+    display: none;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+
+    margin: auto;
+    position: absolute;
+    top: -70%; left: 0; bottom: 0; right: 0;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
