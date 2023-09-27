@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+
 export function markupCreator(imgUrl, name, description, temperament) {
   return `
       <img style='margin-right: 20px' src=${imgUrl} width='400px'>
@@ -10,49 +11,43 @@ export function markupCreator(imgUrl, name, description, temperament) {
       </div>`;
 }
 
-export class loadHideEvents {
+export class LoadHideEvents {
   constructor() {}
-}
 
-export function showSelectLoader() {
-  const breedSelectorEl = document.querySelector('.breed-select');
-  const loaderEl = document.querySelector('.loader');
+  showSelectLoader() {
+    const breedSelectorEl = document.querySelector('.breed-select');
+    const loaderEl = document.querySelector('.loader');
 
-  loaderEl.hidden = false;
-  breedSelectorEl.hidden = true;
-}
+    loaderEl.hidden = false;
+    breedSelectorEl.hidden = true;
+  }
 
-export function hideSelectLoader() {
-  const breedSelectorEl = document.querySelector('.breed-select');
-  const loaderEl = document.querySelector('.loader');
+  hideSelectLoader() {
+    const breedSelectorEl = document.querySelector('.breed-select');
+    const loaderEl = document.querySelector('.loader');
 
-  loaderEl.hidden = true;
-  breedSelectorEl.hidden = false;
-}
+    loaderEl.hidden = true;
+    breedSelectorEl.hidden = false;
+  }
 
-export function showOptionLoading() {
-  const catInfoEl = document.querySelector('.cat-info');
-  const imgLoaderEl = document.querySelector('.img-loader');
-  catInfoEl.innerHTML = '';
-  catInfoEl.hidden = true;
-  imgLoaderEl.style = 'display: inline-block';
-}
+  showOptionLoading() {
+    const catInfoEl = document.querySelector('.cat-info');
+    const imgLoaderEl = document.querySelector('.img-loader');
+    catInfoEl.innerHTML = '';
+    catInfoEl.hidden = true;
+    imgLoaderEl.style = 'display: inline-block';
+  }
 
-export function hideOptionLoading() {
-  const catInfoEl = document.querySelector('.cat-info');
-  const imgLoaderEl = document.querySelector('.img-loader');
-  catInfoEl.hidden = false;
-  imgLoaderEl.style = 'display: none';
-}
+  hideOptionLoading() {
+    const catInfoEl = document.querySelector('.cat-info');
+    const imgLoaderEl = document.querySelector('.img-loader');
+    catInfoEl.hidden = false;
+    imgLoaderEl.style = 'display: none';
+  }
 
-export function showFetchMistake() {
-  Notiflix.Notify.failure(
-    'Oops! Something went wrong! Try reloading the page!'
-  );
-}
-
-export function hideFetchMistake() {
-  const errorEl = document.querySelector('.error');
-
-  errorEl.hidden = true;
+  showFetchMistake() {
+    Notiflix.Notify.failure(
+      'Oops! Something went wrong! Try reloading the page!'
+    );
+  }
 }
