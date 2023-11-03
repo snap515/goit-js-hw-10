@@ -7,10 +7,9 @@ import { markupCreator, LoadHideEvents } from './helpers';
 import { fetchBreeds } from './cat-api';
 import { fetchCatByBreed } from './cat-api';
 
+const loadHideEvents = new LoadHideEvents();
 const catInfoEl = document.querySelector('.cat-info');
 const selectEl = document.querySelector('.breed-select');
-selectEl.addEventListener('change', onSelectChange);
-const loadHideEvents = new LoadHideEvents();
 
 loadHideEvents.showSelectLoader();
 fetchBreeds()
@@ -26,6 +25,7 @@ fetchBreeds()
       select: '#breedSelect',
       data: options,
     });
+    selectEl.addEventListener('change', onSelectChange);
   })
   .catch(error => {
     loadHideEvents.hideSelectLoader();
