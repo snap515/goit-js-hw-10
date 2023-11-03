@@ -25,7 +25,6 @@ fetchBreeds()
       select: '#breedSelect',
       data: options,
     });
-    selectEl.addEventListener('change', onSelectChange);
   })
   .catch(error => {
     loadHideEvents.hideSelectLoader();
@@ -33,6 +32,7 @@ fetchBreeds()
     console.dir(error);
   })
   .finally(() => {
+    selectEl.addEventListener('change', onSelectChange);
     loadHideEvents.hideSelectLoader();
   });
 
