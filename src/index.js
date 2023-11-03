@@ -7,6 +7,9 @@ import { markupCreator, LoadHideEvents } from './helpers';
 import { fetchBreeds } from './cat-api';
 import { fetchCatByBreed } from './cat-api';
 
+const catInfoEl = document.querySelector('.cat-info');
+const selectEl = document.querySelector('.breed-select');
+selectEl.addEventListener('change', onSelectChange);
 const loadHideEvents = new LoadHideEvents();
 
 loadHideEvents.showSelectLoader();
@@ -31,8 +34,6 @@ fetchBreeds()
   })
   .finally(() => {
     loadHideEvents.hideSelectLoader();
-    const selectEl = document.querySelector('.breed-select');
-    selectEl.addEventListener('change', onSelectChange);
   });
 
 function onSelectChange(e) {
@@ -40,7 +41,6 @@ function onSelectChange(e) {
   const breedId = e.target.value;
   fetchCatByBreed(breedId)
     .then(({ url, breeds }) => {
-      const catInfoEl = document.querySelector('.cat-info');
       catInfoEl.innerHTML = markupCreator(
         url,
         breeds[0].name,
