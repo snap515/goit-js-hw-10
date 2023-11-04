@@ -10,20 +10,36 @@ import { fetchCatByBreed } from './cat-api';
 const loadHideEvents = new LoadHideEvents();
 const catInfoEl = document.querySelector('.cat-info');
 const selectEl = document.querySelector('.breed-select');
+selectEl.addEventListener('change', onSelectChange);
 
 loadHideEvents.showSelectLoader();
 fetchBreeds()
   .then(data => {
-    const options = data.reduce((option, { name, reference_image_id }) => {
-      option.push({
-        text: name,
-        value: reference_image_id,
-      });
-      return option;
-    }, []);
+    let selectMarkup = data
+      .map(({ name, reference_image_id }) => {
+        return `<option value=${reference_image_id}>${name}</option>`;
+      })
+      .join('');
+    selectMarkup = '<option data-placeholder="true"></option>' + selectMarkup;
+    selectEl.insertAdjacentHTML('beforeend', selectMarkup);
+    //! METHOD REDUCE
+    // const options = data.reduce((option, { name, reference_image_id }) => {
+    //   option.push({
+    //     text: name,
+    //     value: reference_image_id,
+    //   });
+    //   return option;
+    // }, []);
+    //!
     new SlimSelect({
       select: '#breedSelect',
-      data: options,
+      //!METHOD REDUCE
+      // data: options,
+      //!
+      settings: {
+        searchPlaceholder: 'Search',
+        placeholderText: 'Choose a breed',
+      },
     });
   })
   .catch(error => {
@@ -32,7 +48,6 @@ fetchBreeds()
     console.dir(error);
   })
   .finally(() => {
-    selectEl.addEventListener('change', onSelectChange);
     loadHideEvents.hideSelectLoader();
   });
 
